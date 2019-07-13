@@ -18,20 +18,25 @@ divX = 10;
 // Number divider on axe Y
 divY = 3;
 
-difference()
+module box(lg, wd, ht, extTk, intTk, divX, divY)
 {
-    // External box
-    cube([lg,wd,ht]);
-    
-    // Internal length (X)
-    sizeX = (lg - extTk*2 - intTk*(divX-1))/divX;
-    // Internal width (Y)
-    sizeY = (wd - extTk*2 - intTk*(divY-1))/divY;
-    // Internal heigth (Z)
-    sizeZ = ht - extTk + 0.1;
-    
-    // Holes
-    for (vX=[0:divX-1], vY=[0:divY-1])
-        translate([extTk+vX*(sizeX+intTk),extTk+vY*(sizeY+intTk),extTk])
-        cube([sizeX, sizeY, sizeZ]);
+    difference()
+    {
+        // External box
+        cube([lg,wd,ht]);
+        
+        // Internal length (X)
+        sizeX = (lg - extTk*2 - intTk*(divX-1))/divX;
+        // Internal width (Y)
+        sizeY = (wd - extTk*2 - intTk*(divY-1))/divY;
+        // Internal heigth (Z)
+        sizeZ = ht - extTk + 0.1;
+        
+        // Holes
+        for (vX=[0:divX-1], vY=[0:divY-1])
+            translate([extTk+vX*(sizeX+intTk),extTk+vY*(sizeY+intTk),extTk])
+            cube([sizeX, sizeY, sizeZ]);
+    }
 }
+
+box(lg=lg, wd=wd, ht=ht, extTk=extTk, intTk=intTk, divX=divX, divY=divY);
